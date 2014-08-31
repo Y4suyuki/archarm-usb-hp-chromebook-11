@@ -72,6 +72,7 @@ umount mnt
 
 mount $P12 mnt
 mkdir -p mnt/u-boot
+wget -O ./root/boot/boot.scr.uimg http://archlinuxarm.org/os/exynos/boot.scr.uimg
 cp root/boot/boot.scr.uimg mnt/u-boot
 umount mnt
 
