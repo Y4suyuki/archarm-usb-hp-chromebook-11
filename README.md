@@ -18,21 +18,31 @@ A video of the process can be found here: [http://blog.omgmog.net/post/video-ins
 - Enabled booting from USB devices
 - A USB stick (2GB should be fine)
 
+
 ## To use this script
 
 On your Chromebook with Developer Mode enabled:
 
 ```
-wget https://raw2.github.com/omgmog/archarm-usb-hp-chromebook-11/master/install.sh
-sh install.sh "/dev/sda"
+sudo su -
+cd /tmp
+wget http://git.io/A3D0 -O install.sh
+bash install.sh "/dev/sda"
 ```
+**NOTE**: This needs to be run with /bin/bash, not /bin/sh, which is ash.
 
 After you've made a USB stick and booted from it, you can download and run the `install.sh` again and install to `/dev/mmcblk0` (the eMMC) for a much nicer/faster Arch experience.
 
+Log in as the *root* user which was created during the install process.  Then, select which wifi network to join:
+```
+wifi-menu mlan0
+```
+
+Then, download and run the install script, but this time on the internal storage:
 ```
 pacman -Syy wget
-wget https://raw2.github.com/omgmog/archarm-usb-hp-chromebook-11/master/install.sh
-sh install.sh "/dev/mmcblk0"
+wget http://git.io/A3D0 -O install.sh
+bash install.sh "/dev/mmcblk0"
 ```
 Regarding the modification of the PKGBUILD for `trousers`:
 
@@ -53,11 +63,10 @@ You can then build and install `trousers` and `vboot-utils` with no problem.
 
 ## Post-install
 
-I've included a [`post-install.sh`](https://raw2.github.com/omgmog/archarm-usb-hp-chromebook-11/master/post-install.sh), which you can use to setup the final bits after you've booted your Arch USB stick.
+I've included a [`post-install.sh`](https://raw.githubusercontent.com/omgmog/archarm-usb-hp-chromebook-11/master/post-install.sh), which you can use to setup the final bits after you've booted your Arch USB stick.
 
 ```
-pacman -Syy wget # if not already installed
-wget https://raw2.github.com/omgmog/archarm-usb-hp-chromebook-11/master/post-install.sh
+cd /
 sh post-install.sh
 ```
 
